@@ -7,8 +7,13 @@
 </head>
 
 <body>
+    <div id="root"></div>
     <div class="game">
         <h1>Who wants to Play a Trivia</h1>
+        <div id = 'timer'></div>
+        <div id = 'prize'></div>
+        <div><ul id="prize-list-container"></ul></div>
+        <div id = "prize-earned"></div>
         <div class="trivia">
             <h2 id="questions">question here</h2>
         <div id="option-button">
@@ -17,7 +22,7 @@
             <button class="btn">Option 3</button>
             <button class="btn">Option 4</button>
         </div>
-        <button id="lock">Lock</button>
+        <button id="nextBtn">Lock</button>
         </div>
     </div>
     <script src="trivia.js"></script>

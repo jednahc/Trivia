@@ -36,6 +36,13 @@ body {
     font-weight: 600;
 }
 
+#prizeList{
+    position: fixed;
+    right: 20px;
+    top: 50px;
+}
+
+
 .btn{
     background: #fff;
     color: #222;
@@ -74,4 +81,69 @@ color: #fff;
 
 #lock:hover{
     background: #49bbbb;
+}
+
+#prize-list-container {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 200px;
+    /* Adjust the width as needed */
+    height: 100%;
+    /* Make the prize list container full height */
+    background-color: #f0f0f0;
+    /* Background color of the prize list container */
+}
+
+#prize-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 20px;
+}
+
+#prize-list li {
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+    /* Add a border between each prize */
+}
+
+.blinking {
+    animation: blink-animation 1s infinite;
+    color: rgb(173, 117, 12);
+}
+
+@keyframes blink-animation {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.5;
+    }
+
+    100% {
+        opacity: 1;
+    }
+
+}
+
+.correct-answer {
+    /* content: '\u2714'; */
+    /* Unicode character for tick mark */
+    /* margin-right: 5px; */
+    /* Add some spacing between tick mark and text */
+    color: green;
+    /* Turn font green */
+}
+
+.wrong {
+    color: red;
+}
+
+/* Add strikeout effect for won prize money */
+.won {
+    text-decoration: line-through;
+    /* Add strikeout effect */
+    color: red;
+    /* Turn font red */
 }
