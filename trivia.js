@@ -1,12 +1,4 @@
-// create submit button
-//add more questions and randomise
-//money won turned green, lost turn red, strike out money won
-//display total amount earned
-// play again page
 
-// document.addEventListener("DOMContentLoaded", () => {
-//   initGame();
-// });
 
 const initGame = () => {
   const root = document.getElementById("root");
@@ -19,12 +11,11 @@ const initGame = () => {
 
   // hide game content
   document.querySelector(".game").style.display = "none";
-
   document.getElementById("questions").style.display = "none";
   document.getElementById("option-button").style.display = "none";
   document.getElementById("nextBtn").style.display = "none";
   document.getElementById("timer").style.display = "none";
-  document.getElementById("prize-earned").style.display = "none";
+//   document.getElementById("prize-earned").style.display = "none";
 
   //event listener to start game
   document.getElementById("startGame").addEventListener("click", startGame);
@@ -39,7 +30,7 @@ const startGame = () => {
   document.getElementById("option-button").style.display = "block";
   document.getElementById("nextBtn").style.display = "block";
   document.getElementById("timer").style.display = "block";
-  document.getElementById("prize-earned").style.display = "block";
+//   document.getElementById("prize-earned").style.display = "block";
 
   // remove welcome screen
   const welcome = document.getElementById("welcome");
@@ -69,17 +60,17 @@ const prizeMoneyList = [
   "$200",
   "$300",
   "$500",
-  "$1,000", // Guaranteed amount
+  "$1,000", 
   "$2,000",
   "$4,000",
   "$8,000",
   "$16,000",
-  "$32,000", // Guaranteed amount
+  "$32,000", 
   "$64,000",
   "$125,000",
   "$250,000",
   "$500,000",
-  "$1 MILLION", // Top prize
+  "$1 MILLION", 
 ];
 
 const questions = [
@@ -237,6 +228,7 @@ const start = () => {
   score = 0; //set the score to 0
   next.innerHTML = "Next Question"; //nextBtn answer button to display nextBtn
   reset();
+  questions.sort(() => Math.random() - 0.5);
   showNextQuestion(); //display questions
   updatePrizeDisplay(currentQuestionIndex);
 };
@@ -256,13 +248,13 @@ const startTimer = () => {
     if (timeLeft <= 0) {
       clearInterval(countdown); //stop timer
       correctAnswer();
-
-      if (currentQuestionIndex === questions.length - 1) {
-        next.innerHTML = "Go to Results";
-      } else {
-        next.innerHTML = "Next Question";
-      }
-      next.style.display = "inline-block";
+      const currentPrizeItem = document.querySelector("#prize-list .blinking");
+      if (currentPrizeItem) {
+      currentPrizeItem.classList.remove("blinking"); // Remove blinking style
+      currentPrizeItem.classList.add("wrong"); // Turn the current prize item red
+    }
+    next.innerHTML = "Go to Results";
+    next.style.display = "inline-block";
     }
   }, 1000); //decrease every second
 };
@@ -308,6 +300,9 @@ const showNextQuestion = () => {
 
   startTimer(); //start new timer for next question
   updatePrizeDisplay(currentQuestionIndex);
+  Array.from(optionBtns.children).forEach((option) => {
+    option.disabled = false;
+  });
 };
 
 const updatePrizeDisplay = (currentQuestionIndex) => {
@@ -378,8 +373,15 @@ const displayScore = () => {
   next.innerHTML = "Play Again";
   next.style.display = "block";
   timer.style.display = "none";
-  next.addEventListener("click", start);
+  next.addEventListener("click", playAgain);
 };
+const playAgain = () => {
+  currentQuestionIndex = 0;
+  score = 0;
+  start();
+  timer.style.display = "block";
+};
+
 
 const goNext = () => {
   //function when next button is clicked
